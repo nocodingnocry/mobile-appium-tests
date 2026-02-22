@@ -8,3 +8,5 @@ Python, Appium, Selenium
 Для запуска тестов с выводом логгирования:
 pytest -v -s --log-cli-level=INFO
 
+Для запуска отчёта:
+allure serve allure-results
