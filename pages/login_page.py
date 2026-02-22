@@ -49,3 +49,9 @@ class LoginPage(BasePage):
             return self.find_element(self.LOCKED_MESSAGE)
         except NoSuchElementException:
             return False
+        
+    def is_displayed_login(self) -> bool:
+        try:
+            return self.find_element(self.LOGIN_BUTTON)
+        except NoSuchElementException:
+            return False
