@@ -43,6 +43,7 @@ jobs:
                 pytest -v -s
 
         - name: Generate Allure report
+          if: always()
           run: |
                 allure generate allure-results -o allure-report --clean
 
