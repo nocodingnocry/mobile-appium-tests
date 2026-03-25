@@ -40,5 +40,9 @@ jobs:
                 sleep 10
         - name: Run iOS tests
           run: |
-                pytest -v -s --log-cli-level=INFO
+                pytest -v -s
+
+        - name: Generate Allure report
+          run: |
+                allure generate allure-results -o allure-report --clean
 
