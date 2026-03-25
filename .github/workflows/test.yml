@@ -46,4 +46,6 @@ jobs:
           if: always()
           run: |
                 allure generate allure-results -o allure-report --clean
+                echo "Allure report available at:"
+                echo "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
 
