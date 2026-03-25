@@ -32,6 +32,16 @@ jobs:
           run: |
                 echo "Available devices:"
                 xcrun xctrace list devices
+                
+        - name: Create .env for tests
+          if: always()
+          run: |
+            echo "STANDART_USER=${{ secrets.STANDART_USER }}" >> .env
+            echo "STANDART_PASSWORD=${{ secrets.STANDART_PASSWORD }}" >> .env
+            echo "LOCKED_OUT_USER=${{ secrets.LOCKED_OUT_USER }}" >> .env
+            echo "LOCKED_USER_PASSWORD=${{ secrets.LOCKED_USER_PASSWORD }}" >> .env
+            echo "PROBLEM_USER=${{ secrets.PROBLEM_USER }}" >> .env
+            echo "PROBLEM_USER_PASSWORD=${{ secrets.PROBLEM_USER_PASSWORD }}" >> .env
       
         - name: Start Appium
           run: |
