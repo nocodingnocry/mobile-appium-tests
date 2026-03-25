@@ -1,4 +1,4 @@
-- name: iOS Real Device Appium Tests
+name: iOS Real Device Appium Tests
 
 on:
   push:
@@ -7,43 +7,40 @@ on:
     branches: [ main ]
   schedule:
     - cron: '0 */6 * * *'  # каждые 6 часов
+  workflow_dispatch:
 
 jobs:
     ios-real-device:
-
-
-    runs-on: self-hosted
-
-steps:
-  - name: Checkout repository
-        uses: actions/checkout@v4
-
- - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-- name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-
-- name: Install Appium
-        run: |
-          npm install -g appium
-          appium driver install xcuitest
-
-- name: Check connected devices
-        run: |
-          echo "Available devices:"
-          xcrun xctrace list devices
-
-- name: Start Appium
-        run: |
-          echo "Starting Appium..."
-          appium --log-level info &
-          sleep 10
-
-- name: Run iOS tests
-        run: |
-          pytest tests/ios -v
+      runs-on: self-hosted
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v4
+        
+        - name: Set up Python
+          uses: actions/setup-python@v5
+          with:
+              python-version: '3.14'
+                
+        - name: Install dependencies
+          run: |
+                pip install -r requirements.txt
+                
+        - name: Install Appium
+          run: |
+                npm install -g appium
+                appium driver install xcuitest
+                
+        - name: Check connected devices
+          run: |
+                echo "Available devices:"
+                xcrun xctrace list devices
+      
+        - name: Start Appium
+          run: |
+                echo "Starting Appium..."
+                appium --log-level info &
+                sleep 10
+        - name: Run iOS tests
+          run: |
+                pytest -v -s --log-cli-level=INFO
 
